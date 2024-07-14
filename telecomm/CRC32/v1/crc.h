@@ -1,57 +1,29 @@
-/* +++Date last modified: 05-Jul-1997 */
+#ifndef CRC_H
+#define CRC_H
 
-/*
-**  CRC.H - header file for SNIPPETS CRC and checksum functions
-*/
+#include <systemc.h>
 
-#ifndef CRC__H
-#define CRC__H
+// CRC32 Module Declaration
+SC_MODULE(CRC32) {
+    sc_in<bool> clk;
+    sc_in<bool> reset;
+    sc_in<bool> data_in_valid;
+    sc_in<unsigned char> data_in;
+    sc_out<bool> crc_out_valid;
+    sc_out<sc_uint<32>> crc_out;
 
-#include <stdlib.h>           /* For size_t                 */
-#include "sniptype.h"         /* For BYTE, WORD, DWORD      */
+    // Internal variables
+    sc_uint<32> crc;
 
-/*
-**  File: ARCCRC16.C
-*/
+    // Method Prototypes
+    void update_crc();
 
-void init_crc_table(void);
-WORD crc_calc(WORD crc, char *buf, unsigned nbytes);
-void do_file(char *fn);
+    // Constructor
+    SC_CTOR(CRC32) {
+        SC_METHOD(update_crc);
+        sensitive << clk.pos();
+        async_reset_signal_is(reset, true);
+    }
+};
 
-/*
-**  File: CRC-16.C
-*/
-
-WORD crc16(char *data_p, WORD length);
-
-/*
-**  File: CRC-16F.C
-*/
-
-WORD updcrc(WORD icrc, BYTE *icp, size_t icnt);
-
-/*
-**  File: CRC_32.C
-*/
-
-#define UPDC32(octet,crc) (crc_32_tab[((crc)^((BYTE)octet)) & 0xff] ^ ((crc) >> 8))
-
-DWORD updateCRC32(unsigned char ch, DWORD crc);
-Boolean_T crc32file(char *name, DWORD *crc, long *charcnt);
-DWORD crc32buf(char *buf, size_t len);
-
-/*
-**  File: CHECKSUM.C
-*/
-
-unsigned checksum(void *buffer, size_t len, unsigned int seed);
-
-/*
-**  File: CHECKEXE.C
-*/
-
-void checkexe(char *fname);
-
-
-
-#endif /* CRC__H */
+#endif // CRC_H
