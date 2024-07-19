@@ -15,13 +15,13 @@
 // 01/08/13   1.1       PolyU DARC Group   Conversion into Synthesizable SystemC
 //---------------------------------------------------------------------------
 
-#ifndef QSORT_H
-#define QSORT_H
+#ifndef CRC32_H
+#define CRC32_H
 
 #include "define.h"
 
 
-SC_MODULE( quicksort )
+SC_MODULE( crc32 )
 {
     sc_in<bool> clk;
     sc_in<bool> rst;
@@ -31,22 +31,17 @@ SC_MODULE( quicksort )
 
 
    /* R */
-   void run() ;
-
-   /* S */
-   void swap(int *, int *);
-   void sort(sc_uint<8> *);
-
+   void crc32buf() ;
 	
-   SC_CTOR( quicksort)
+   SC_CTOR(crc32)
      {
-       SC_CTHREAD(run, clk.pos()) ;
+       SC_CTHREAD(crc32buf, clk.pos()) ;
        reset_signal_is(rst, false) ;
      }
 
-   ~quicksort(){}
+   ~crc32(){}
 
 };
 
-#endif // QOSRT_H
+#endif 
 
