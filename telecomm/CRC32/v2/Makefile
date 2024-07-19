@@ -26,6 +26,8 @@ HDRS	=  \
 	define.h \
 	crc32.h
 
+CYBER_PATH = /home/user/systemc
+CYBER_SYSTEMC_HOME = $(CYBER_PATH)/systemc-3.0.0
 
 ifneq (, $(wildcard /bin/uname))
 CPU_ARCH = $(shell /bin/uname -m)
