@@ -10,21 +10,21 @@
 #---------------------------------------------------------------------------
 # Date      Version    Author      Description
 #---------------------------------------------------------------------------
-#14/12/13        1.0    PolyU       Makefile for QSORT
+#14/12/13        1.0    PolyU       Makefile for crc32
 #============================================================================
 
-TARGET	= qsort.exe
+TARGET	= crc32.exe
 
 SRCS	=  \
 	main.cpp \
-	tb_qsort.cpp \
-	qsort.cpp
+	tb_crc32.cpp \
+	crc32.cpp
 
 
 HDRS	=  \
-	tb_qsort.h \
+	tb_crc32.h \
 	define.h \
-	qsort.h
+	crc32.h
 
 
 ifneq (, $(wildcard /bin/uname))
@@ -91,9 +91,9 @@ wave:  $(OBJS)
 
 main.o: main.cpp
 	$(CC) $(CFLAGS) $(CWB_SC_INCL) $(INCL) -c $< -o $@
-tb_qsort.o: tb_qsort.cpp
+tb_crc32.o: tb_crc32.cpp
 	$(CC) $(CFLAGS) $(CWB_SC_INCL) $(INCL) -c $< -o $@
-qsort.o: qsort.cpp
+crc32.o: crc32.cpp
 	$(CC) $(CFLAGS) $(CWB_SC_INCL) $(INCL) -c $< -o $@
 
 clean :
