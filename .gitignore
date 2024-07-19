@@ -1,4 +1,4 @@
 
 *.Identifier
 telecomm/CRC32/gen1/crc_32_systemc
-telecomm/CRC32/v2/main.o
+*.o
