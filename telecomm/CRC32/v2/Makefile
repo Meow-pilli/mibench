@@ -1,18 +1,3 @@
-#===========================================================================
-#
-# File Name    : Makefile
-# Description  : Makefile for FIR filter
-# Release Date : 14/02/13
-# Author       : PolYU
-#
-# Note         : Edit SYSTEMC_HOME path
-# Revision History
-#---------------------------------------------------------------------------
-# Date      Version    Author      Description
-#---------------------------------------------------------------------------
-#14/12/13        1.0    PolyU       Makefile for crc32
-#============================================================================
-
 TARGET	= crc32.exe
 
 SRCS	=  \
