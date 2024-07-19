@@ -21,7 +21,7 @@
 #include "define.h"
 
 
-SC_MODULE( crc32 )
+SC_MODULE(crc32)
 {
     sc_in<bool> clk;
     sc_in<bool> rst;
@@ -31,6 +31,7 @@ SC_MODULE( crc32 )
 
 
    /* R */
+   //void UPDC32();
    void crc32buf() ;
 	
    SC_CTOR(crc32)

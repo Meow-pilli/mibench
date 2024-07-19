@@ -1,7 +1,7 @@
 //========================================================================================
 // 
 //
-// File Name    : tb_qsort.h
+// File Name    : tb_crc32.h
 // Description  : Testbench for Quick sort
 // Release Date : 01/08/2013
 // Author       : PolyU DARC Group
@@ -15,12 +15,12 @@
 // 01/08/2013  PolyU       1.0       Quick Sort original testbench
 //=======================================================================================
 
-#ifndef TEST_QSORT
-#define TEST_QSORT
+#ifndef TEST_CRC32
+#define TEST_CRC32
 
 #include "define.h"
 
-SC_MODULE (test_qsort){
+SC_MODULE (test_crc32){
 
   // Inputs
   sc_in<bool>          clk;
@@ -49,7 +49,7 @@ SC_MODULE (test_qsort){
 
 
 
-  SC_CTOR ( test_qsort ) {
+  SC_CTOR ( test_crc32 ) {
  
     SC_CTHREAD(send,clk.pos());
     reset_signal_is(rst,false);
@@ -58,8 +58,8 @@ SC_MODULE (test_qsort){
     reset_signal_is(rst,false);
   }
 
-  ~test_qsort(){}
+  ~test_crc32(){}
 
 };
 
-#endif //TEST_QSORT
+#endif //TEST_crc32

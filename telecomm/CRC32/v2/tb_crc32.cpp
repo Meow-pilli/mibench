@@ -1,7 +1,7 @@
 //========================================================================================
 // 
 //
-// File Name    : tb_qsort.cpp
+// File Name    : tb_crc32.cpp
 // Description  : Testbench for bubble sort
 // Release Date : 01/08/2013
 // Author       : PolyU DARC Lab
@@ -13,15 +13,15 @@
 //----------------------------------------------------------------------------------------
 // 01/08/2013    1.0      PolyU DARC Lab  quick sort testbench
 //
-// g++ -o qsort.exe main.cpp tb_qsort.cpp qsort.cpp -I$SYSTEMC_HOME/include -L$SYSTEMC_HOME/lib -lsystemc -lm
+// g++ -o crc32.exe main.cpp tb_crc32.cpp crc32.cpp -I$SYSTEMC_HOME/include -L$SYSTEMC_HOME/lib -lsystemc -lm
 //=======================================================================================
-#include "tb_qsort.h"
+#include "tb_crc32.h"
 
 
 //--------------------------
 // Send data thread
 //-------------------------
-void test_qsort::send(){
+void test_crc32::send(){
 
   // Variables declaration
   int i=0;
@@ -67,7 +67,7 @@ void test_qsort::send(){
 //--------------------------
 // Receive data thread
 //--------------------------
-void test_qsort::recv(){
+void test_crc32::recv(){
 
   // Variables declaration
   unsigned int out_write=0;
@@ -97,7 +97,7 @@ void test_qsort::recv(){
 //--------------------------
 // Compare results function
 //--------------------------
-void test_qsort::compare_results(){
+void test_crc32::compare_results(){
 
   int outsort, out_golden, line=1, errors=0;
 

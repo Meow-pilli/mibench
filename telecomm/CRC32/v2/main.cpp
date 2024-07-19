@@ -32,7 +32,7 @@ int sc_main(int argc, char** argv)
    crc32 u_CRC32("CRC32");
    test_crc32 u_test("test_CRC32");
 
-   //connect to bubble sort
+   //connect to CRC32
    u_CRC32.clk( clk );
    u_CRC32.rst( rst );
 
