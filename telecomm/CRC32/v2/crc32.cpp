@@ -49,25 +49,25 @@ const uint32_t crc_32_tab[256] = { /* CRC polynomial 0xedb88320 */
 
 
 //crc update function
-void crc32::UPDC32(unsigned char ch, uint32_t crc)
+uint32_t crc32::UPDC32(unsigned char ch, uint32_t crc)
 {
   return crc_32_tab[(crc ^ ch) & 0xFF] ^ (crc >> 8);
 }
 
 
 //buffer crc calculation
-void crc32::crc32buf(char *buf, size_t len)
+void crc32::crc32buf(char *buf, size_t len, uint32_t *oldcrc32)
 {
-      register uint32_t oldcrc32;
+      //uint32_t oldcrc32;
 
-      oldcrc32 = 0xFFFFFFFF;
+      *oldcrc32 = 0xFFFFFFFF;
 
       for ( ; len; --len, ++buf)
       {
-            oldcrc32 = UPDC32(*buf, oldcrc32);
+            *oldcrc32 = UPDC32(*buf, *oldcrc32);
       }
 
-      return ~oldcrc32;
+      //return ~oldcrc32;
       
 }
 

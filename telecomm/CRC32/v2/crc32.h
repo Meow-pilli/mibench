@@ -32,7 +32,8 @@ SC_MODULE(crc32)
 
    /* R */
    //void UPDC32();
-   void crc32buf() ;
+   uint32_t UPDC32(unsigned char ch, uint32_t crc);
+   void crc32buf(char *buf, size_t len, uint32_t *oldcrc32);
 	
    SC_CTOR(crc32)
      {
