@@ -3,3 +3,4 @@
 telecomm/CRC32/gen1/crc_32_systemc
 *.o
 *.zip
+telecomm/CRC32/v2/Makefile
