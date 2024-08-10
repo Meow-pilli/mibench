@@ -16,7 +16,7 @@ public:
    sc_in<sc_uint<8> > in_data ;
 
    // Output
-   sc_out< sc_uint<8> > ave8_output ;
+   sc_out< sc_uint<8> > crc32_output ;
 
 
    /* F */
@@ -39,5 +39,5 @@ public:
 };
 
 
-#endif   //  AVE8_H_
+#endif   //  CRC32_H_
 

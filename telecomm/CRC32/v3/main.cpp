@@ -18,7 +18,7 @@ int sc_main(int argc, char** argv)
   crc32 u_CRC32("CRC*");
   test_CRC32 test("test_CRC32");
 
-  //connect to ave8 module
+  //connect to crc32 module
   u_CRC32.clk( clk );
   u_CRC32.rst( rst );
 
