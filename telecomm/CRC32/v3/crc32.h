@@ -1,25 +1,11 @@
-//========================================================================================
-// 
-// File Name    : ave8.h
-// Description  : ave8 module declaration
-// Release Date : 12/08/2017
-// Author       : DARClab
-// 
-// Revision History
-//---------------------------------------------------------------------------------------
-// Date         Version    Author      Description
-//---------------------------------------------------------------------------------------
-//12/08/2017      1.0      DARClab    ave8 module declaration
-//=======================================================================================
-
-#ifndef AVE8_H_
-#define AVE8_H_
+#ifndef CRC32_H_
+#define CRC32_H_
 
 
 #include "define.h"
 
 
-SC_MODULE (ave8) {
+SC_MODULE (crc32) {
 
 
 public:
@@ -34,20 +20,20 @@ public:
 
 
    /* F */
-   void ave8_main ( void );
+   void crc32_main ( void );
 
 
    // Constructor
- SC_CTOR (ave8) {
+ SC_CTOR (crc32) {
 
-       SC_CTHREAD (ave8_main, clk.pos() );
+       SC_CTHREAD (crc32_main, clk.pos() );
        reset_signal_is(rst, false) ;
        sensitive << clk.pos();
 
    }
 
    // Destructor
-   ~ave8() {}
+   ~crc32() {}
 
 
 };
