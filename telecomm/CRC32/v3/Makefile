@@ -1,29 +1,14 @@
-#===========================================================================
-#
-# File Name    : Makefile
-# Description  : Makefile for moving average of 8 numbers
-# Release Date : 12/08/2017
-# Author       : DARClab, UTD
-#
-# Note         : Edit SYSTEMC_HOME path
-# Revision History
-#---------------------------------------------------------------------------
-# Date      Version    Author      Description
-#---------------------------------------------------------------------------
-#12/08/17        1.0   DARClab     Makefile for ave8
-#============================================================================
-
-TARGET	= ave8.exe
+TARGET	= crc32.exe
 
 SRCS	=  \
 	main.cpp \
-	tb_ave8.cpp \
-	ave8.cpp
+	tb_crc32.cpp \
+	crc32.cpp
 
 HDRS	=  \
-	tb_ave8.h \
+	tb_crc32.h \
 	define.h \
-	ave8.h
+	crc32.h
 
 CYBER_PATH = /home/user/systemc
 CYBER_SYSTEMC_HOME = $(CYBER_PATH)/systemc-3.0.0
@@ -92,9 +77,9 @@ wave:  $(OBJS)
 
 main.o: main.cpp
 	$(CC) $(CFLAGS) $(CWB_SC_INCL) $(INCL) -c $< -o $@
-tb_ave8.o: tb_ave8.cpp
+tb_crc32.o: tb_crc32.cpp
 	$(CC) $(CFLAGS) $(CWB_SC_INCL) $(INCL) -c $< -o $@
-ave8.o: ave8.cpp
+crc32.o: crc32.cpp
 	$(CC) $(CFLAGS) $(CWB_SC_INCL) $(INCL) -c $< -o $@
 
 clean :
