@@ -1,21 +1,6 @@
-//===========================================================================
-//
-// File Name    : main.cpp
-// Description  : ave8 top system description
-// Release Date : 12/08/2017
-// Author       : DARClab
-//
-// Revision History
-//---------------------------------------------------------------------------
-// Date            Version   Author    Description
-//---------------------------------------------------------------------------
-//12/08/2017         1.0     DARClab     Top system declaration
-//
-// g++ -o ave8.exe main.cpp tb_ave8.cpp ave8.cpp -I$SYSTEMC_HOME/include -L$SYSTEMC_HOME/lib -lsystemc -lm
-//===========================================================================
 
-#include "ave8.h"
-#include "tb_ave8.h"
+#include "crc32.h"
+#include "tb_crc32.h"
 
 
 int sc_main(int argc, char** argv)
@@ -25,22 +10,22 @@ int sc_main(int argc, char** argv)
   sc_signal<sc_uint<8> >  in_data;
 
  
-  sc_signal<sc_uint<8> > ave8_output; 
+  sc_signal<sc_uint<8> > crc32_output; 
   int x;
   char name[10];
 
 
-  ave8 u_AVE8("AVE*");
-  test_AVE8 test("test_AVE8");
+  crc32 u_CRC32("CRC*");
+  test_CRC32 test("test_CRC32");
 
   //connect to ave8 module
-  u_AVE8.clk( clk );
-  u_AVE8.rst( rst );
+  u_CRC32.clk( clk );
+  u_CRC32.rst( rst );
 
 
-  u_AVE8.in_data( in_data );
+  u_CRC32.in_data( in_data );
 
-  u_AVE8.ave8_output( ave8_output );
+  u_CRC32.crc32_output( crc32_output );
 
   // connect to test bench
   test.clk( clk );
@@ -50,7 +35,7 @@ int sc_main(int argc, char** argv)
    test.in_data( in_data );
 
 
-  test.ave8_output( ave8_output );
+  test.crc32_output( crc32_output );
 
 
 #ifdef WAVE_DUMP
@@ -61,7 +46,7 @@ int sc_main(int argc, char** argv)
   sc_trace(trace_file, clk              , "clk");
   sc_trace(trace_file, rst              , "rst"); 
   sc_trace(trace_file, in_data          , "ind_data");
-  sc_trace(trace_file, filter_output    , "ave8_output");
+  sc_trace(trace_file, filter_output    , "crc32_output");
 
 #endif  // End WAVE_DUMP
 
