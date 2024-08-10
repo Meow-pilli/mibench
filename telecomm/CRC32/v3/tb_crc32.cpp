@@ -1,34 +1,21 @@
-//========================================================================================
-// 
-// File Name    : tb_ave8.cpp
-// Description  : Testbench
-// Release Date : 12/08/2017
-// Author       : DARClab
-//
-// Revision History
-//---------------------------------------------------------------------------------------
-// Date         Version   Author     Description
-//----------------------------------------------------------------------------------------
-//12/08/2017       1.0    DARClab     ave8  testbench
-//
-//=======================================================================================
-#include "tb_ave8.h"
+
+#include "tb_crc32.h"
 
 
 //--------------------------
 // Send data thread
 //--------------------------
-void test_AVE8::send(){
+void test_CRC32::send(){
 
   // Variables declaration
   int i=0;
-  unsigned int  in_ave8_read;
+  unsigned int  in_crc32_read;
 
   //Reset routine
-  in_ave8_file = fopen(INFILENAME, "rt");
+  in_crc32_file = fopen(INFILENAME, "rt");
 
 
-  if(!in_ave8_file){
+  if(!in_crc32_file){
     cout << "Could not open " << INFILENAME << "\n";
     sc_stop();
     exit (-1);
@@ -39,13 +26,13 @@ void test_AVE8::send(){
   i= 0;
   while(true){
 
-    while(fscanf(in_ave8_file,"%u", &in_ave8_read) != EOF){
-	in_data.write(in_ave8_read);
+    while(fscanf(in_crc32_file,"%u", &in_crc32_read) != EOF){
+	in_data.write(in_crc32_read);
 	  wait();
     }
   
    
-    fclose(in_ave8_file);
+    fclose(in_crc32_file);
 
     cout << endl << "Starting comparing results " << endl;
  
@@ -62,14 +49,14 @@ void test_AVE8::send(){
 //-----------------------------
 // Receive data thread
 //----------------------------
-void test_AVE8::recv(){
+void test_CRC32::recv(){
 
   // Variables declaration
-  unsigned int ave8_out_write=0;
+  unsigned int crc32_out_write=0;
 
-  out_ave8_file = fopen (OUTFILENAME, "wt");
+  out_crc32_file = fopen (OUTFILENAME, "wt");
 
-  if(!out_ave8_file){
+  if(!out_crc32_file){
     cout << "Could not open " << OUTFILENAME << "\n";
     sc_stop();
     exit (-1);
@@ -79,9 +66,9 @@ void test_AVE8::recv(){
   wait();
 
   while(true){
-    ave8_out_write = ave8_output.read();
+    crc32_out_write = crc32_output.read();
 
-    fprintf(out_ave8_file,"%d\n",ave8_out_write);
+    fprintf(out_crc32_file,"%d\n",crc32_out_write);
 
     wait();
   }
@@ -91,17 +78,17 @@ void test_AVE8::recv(){
 //---------------------------------
 // Compare results function
 //--------------------------------
-void test_AVE8::compare_results(){
+void test_CRC32::compare_results(){
 
-  int outave8, outave8_golden, line=1, errors=0;
+  int outcrc32, outcrc32_golden, line=1, errors=0;
 
   // Close file where outputs are stored
-  fclose(out_ave8_file);
+  fclose(out_crc32_file);
 
   // Open results file
-  out_ave8_file = fopen (OUTFILENAME, "rt");
+  out_crc32_file = fopen (OUTFILENAME, "rt");
 
-  if(!out_ave8_file){
+  if(!out_crc32_file){
     cout << "Could not open " << OUTFILENAME << endl;
     sc_stop();
     exit (-1);
@@ -110,8 +97,8 @@ void test_AVE8::compare_results(){
     //
     //Load the golden output from file
     //
-    out_ave8_golden_file = fopen (OUTFILENAME_GOLDEN, "rt");
-    if(!out_ave8_golden_file){
+    out_crc32_golden_file = fopen (OUTFILENAME_GOLDEN, "rt");
+    if(!out_crc32_golden_file){
       cout << "Could not open " << OUTFILENAME_GOLDEN << endl;
       sc_stop();
       exit (-1);
@@ -128,17 +115,17 @@ void test_AVE8::compare_results(){
 	 exit (-1);
        }
 
-    while(fscanf(out_ave8_golden_file, "%d", &outave8_golden) != EOF){
-      fscanf(out_ave8_file,"%d", &outave8);
+    while(fscanf(out_crc32_golden_file, "%d", &outcrc32_golden) != EOF){
+      fscanf(out_crc32_file,"%d", &outcrc32);
      
 
-      cout << endl <<"Cycle["<< line << "]: " << outave8_golden << "-- "<< outave8;
+      cout << endl <<"Cycle["<< line << "]: " << outcrc32_golden << "-- "<< outcrc32;
 
 
-	   if(outave8 != outave8_golden){
-	     cout << "\nOutput missmatch [line:" << line << "] Golden:" << outave8_golden << " -- Output:" << outave8;
+	   if(outcrc32 != outcrc32_golden){
+	     cout << "\nOutput missmatch [line:" << line << "] Golden:" << outcrc32_golden << " -- Output:" << outcrc32;
 
-	     fprintf(diff_file,"\nOutput missmatch[line:%d] Golden: %d -- Output: %d",line, outave8_golden, outave8);
+	     fprintf(diff_file,"\nOutput missmatch[line:%d] Golden: %d -- Output: %d",line, outcrc32_golden, outcrc32);
 	     
 	     errors++;
 	   }
@@ -153,9 +140,9 @@ void test_AVE8::compare_results(){
       cout << endl << "Finished simulation " << errors << " MISSMATCHES between Golden and Simulation" << endl;
 
 
-    fclose(out_ave8_file);
+    fclose(out_crc32_file);
     fclose(diff_file);
-    fclose(out_ave8_golden_file);
+    fclose(out_crc32_golden_file);
 
 
 
